@@ -17,7 +17,7 @@
     "test:watch": "npm run test -- --watch"
 
   },
-  "author": "Cory House",
+  "author": "Cory House I",
   "license": "MIT",
   "dependencies": {
     "whatwg-fetch": "1.0.0"
