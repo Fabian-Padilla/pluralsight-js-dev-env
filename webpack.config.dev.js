@@ -1,5 +1,6 @@
 //import webpack from 'webpack';
 import path from "path";
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 export default {
 
@@ -19,7 +20,15 @@ export default {
     contentBase: path.resolve(__dirname,'src')
 
   },
-  plugins: [],
+  plugins: [
+
+    //  this plug in will dynamically generate index.html in all environments
+    //  create HTML file that includes reference to bundled JS.
+    new HtmlWebpackPlugin({
+      template: 'src/index.html',
+      inject : true // inject any necesary script tags
+    })
+  ],
   module: {
 
     loaders: [
