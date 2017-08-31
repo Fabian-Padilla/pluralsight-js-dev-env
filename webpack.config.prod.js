@@ -2,6 +2,8 @@ import webpack from 'webpack';
 import path from "path";
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 
 export default {
 
@@ -12,10 +14,10 @@ export default {
 
   // entry: [path.resolve(__dirname, 'src/index')],
   //  instead of an array we create an object to create a Bundle Splitting
-  entry :
-  {
+  entry : {
+
     vendor: path.resolve(__dirname,'src/vendor'),
-    main : path.resolve(__dirname,'src/index')
+    main: path.resolve(__dirname,'src/index')
   },
 
   target: 'web',
@@ -24,9 +26,6 @@ export default {
     path: path.resolve(__dirname,'dist'),
     publicPath: '/',
     fileName: '[name].js'
-    //fileName: 'bundle.js',
-
-
   },
   devserver: {
     contentBase: path.resolve(__dirname,'dist')
@@ -39,6 +38,12 @@ export default {
 
       name : 'vendor'
     }),
+
+    new BundleAnalyzerPlugin({
+
+            analyzerMode: 'static'
+          }),
+
     //  this plug in will dynamically generate index.html in all environments
     //  create HTML file that includes reference to bundled JS.
     new HtmlWebpackPlugin({
